@@ -21,6 +21,3 @@ function makeMystery(){
 
 makeMystery();
 makeMystery()();
-
-// Today I learned that functions can return other functions. This is a very powerful concept in JavaScript and is used in many libraries and frameworks. It allows us to create higher-order functions, which can take other functions as arguments or return them as results. This can lead to more flexible and reusable code.
-// Also about git commits
