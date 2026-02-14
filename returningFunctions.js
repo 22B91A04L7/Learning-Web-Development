@@ -22,4 +22,4 @@ function makeMystery(){
 makeMystery();
 makeMystery()();
 
-// Today we have seen that functions can be returned from other functions. This is a powerful concept in JavaScript and is the basis for many advanced techniques such as closures and higher-order functions. In the next section, we will explore how to use these concepts to create more complex and useful functions.
+// Today we have seen that functions can be returned from other functions. 
