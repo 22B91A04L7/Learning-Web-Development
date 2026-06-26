@@ -1,0 +1,9 @@
+.read {
+    background-color: lightgreen;
+    color: green;
+}
+
+.unread {
+    background-color: pink;
+    color: red;
+}

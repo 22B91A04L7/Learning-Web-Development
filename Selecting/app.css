@@ -26,3 +26,8 @@ img.square {
 .tocnumber {
     color: black;
 }
+
+.border{
+    text-decoration: underline;
+   
+}
