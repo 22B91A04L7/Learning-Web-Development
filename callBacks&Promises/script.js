@@ -18,6 +18,8 @@ ChangeColor('magenta', 1000)
 // used to reduce code complexity  --> writing return new Promise()
 
 async function rainbow() {
+
+    //await is used to stop execution until promise is returned
     await ChangeColor('magenta', 2000)
     await ChangeColor('yellow', 1000)
     await ChangeColor('green', 1000)
