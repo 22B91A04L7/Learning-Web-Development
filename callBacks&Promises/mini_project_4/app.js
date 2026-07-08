@@ -121,4 +121,4 @@ const product = {
     price: 50000
 }
 
-checkout(user.username, user.password, 2)
+checkout(user.username, user.password, 1)
