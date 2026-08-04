@@ -1,6 +1,8 @@
+const { log } = require('console');
 const express = require('express')
 const app = express()
 const path = require('path');
+const { v4: newID } = require('uuid')
 
 app.use(express.urlencoded({ extended: true })) // for form data parsing
 app.use(express.json()) // for json data parsing
@@ -11,18 +13,22 @@ app.set('view engine', 'ejs') // telling express to use ejs
 //dummy database
 const comments = [
     {
+        id: newID(),
         username: 'Venkat',
         comment: "Hiii Im venkat"
     },
     {
+        id: newID(),
         username: "Veera",
         comment: "Hello Im Commenting..!"
     },
     {
+        id: newID(),
         username: "Pawan",
         comment: "Deputy CM OF AP"
     },
     {
+        id: newID(),
         username: "Tom",
         comment: "Just Watched BRAND NEW DAY"
     }
@@ -37,11 +43,20 @@ app.get('/comments', (req, res) => {
 app.get('/comments/new', (req, res) => {
     res.render('comments/newComment')
 })
+
 //post a new comment --> New
 app.post('/comments', (req, res) => {
     const newComment = req.body;
+    newComment.id = newID();
     comments.push(newComment);
     res.redirect('/comments')
+})
+
+//show route --> view comment using id
+app.get('/comments/:id', (req, res) => {
+    const { id } = req.params
+    const comment = comments.find(c => c.id === id)
+    res.render('comments/show', { comment })
 })
 
 app.get('/', (req, res) => {
