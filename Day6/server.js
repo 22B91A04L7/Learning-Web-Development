@@ -12,7 +12,7 @@ app.set('views', path.join(__dirname, 'views')) //for using .ejs files
 app.set('view engine', 'ejs') // telling express to use ejs
 
 //dummy database
-const comments = [
+let comments = [
     {
         id: newID(),
         username: 'Venkat',
@@ -73,6 +73,13 @@ app.patch('/comments/:id', (req, res) => {
     const newComment = req.body.comment;
     const foundComment = comments.find(c => c.id === id)
     foundComment.comment = newComment
+    res.redirect('/comments')
+})
+
+//DELETE end point to delete comment
+app.delete('/comments/:id', (req, res) => {
+    const { id } = req.params;
+    comments = comments.filter(c => c.id !== id);
     res.redirect('/comments')
 })
 
