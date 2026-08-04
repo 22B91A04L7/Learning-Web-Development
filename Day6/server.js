@@ -3,10 +3,11 @@ const express = require('express')
 const app = express()
 const path = require('path');
 const { v4: newID } = require('uuid')
+const methodOverride = require('method-override')
 
 app.use(express.urlencoded({ extended: true })) // for form data parsing
 app.use(express.json()) // for json data parsing
-
+app.use(methodOverride('_method')) // to use post and get requests as other HTTP request
 app.set('views', path.join(__dirname, 'views')) //for using .ejs files
 app.set('view engine', 'ejs') // telling express to use ejs
 
@@ -57,6 +58,22 @@ app.get('/comments/:id', (req, res) => {
     const { id } = req.params
     const comment = comments.find(c => c.id === id)
     res.render('comments/show', { comment })
+})
+
+//GET to render form for update route
+app.get('/comments/:id/edit', (req, res) => {
+    const { id } = req.params
+    const comment = comments.find(c => c.id === id)
+    res.render('comments/edit', { comment })
+})
+
+//update route to edit the comment using PATCH 
+app.patch('/comments/:id', (req, res) => {
+    const { id } = req.params
+    const newComment = req.body.comment;
+    const foundComment = comments.find(c => c.id === id)
+    foundComment.comment = newComment
+    res.redirect('/comments')
 })
 
 app.get('/', (req, res) => {
