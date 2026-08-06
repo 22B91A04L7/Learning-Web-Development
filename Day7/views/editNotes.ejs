@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Edit Your Notes</h2>
+    <form method="post" action="/notes/<%= foundNotes.id%>?_method=patch">
+        <label for="title">Edit Title</label>
+        <br>
+        <textarea name="title" id="title" rows=3 cols=20><%= foundNotes.title  %></textarea>
+        <div>
+            <label for="content">Edit content</label>
+            <br>
+            <textarea name="content" id="content" rows="5" cols="25"><%=foundNotes.content  %></textarea>
+        </div>
+        <button>Save Notes</button>
+    </form>
+    <form method="post" action="/notes/<%= foundNotes.id%>?_method=delete">
+        <button>Delete Notes</button>
+    </form>
+</body>
+
+</html>

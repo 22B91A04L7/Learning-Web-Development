@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Note with ID : <%= foundNotes.id %>
+    </h2>
+    <h3>
+        <%= foundNotes.title %>
+    </h3>
+    <p>
+        <%= foundNotes.content %>
+    </p>
+    <a href="/notes/<%=  foundNotes.id %>/edit">edit notes</a>
+    <br>
+    <a href="/notes">back</a>
+</body>
+
+</html>

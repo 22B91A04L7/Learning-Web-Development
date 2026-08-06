@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Notes Saved!!!</h2>
+    <ul>
+        <% for(let note of notes){ %>
+            <li>
+                <b>
+                    <%= note.title %>
+                </b>
+                <p>
+                    <%= note.content %> - <a href="/notes/<%= note.id %>">details</a>
+                </p>
+
+            </li>
+            <% } %>
+    </ul>
+    <a href="/">back to home</a>
+    <div>
+        <a href="/notes/new">Add new note</a>
+    </div>
+</body>
+
+</html>
