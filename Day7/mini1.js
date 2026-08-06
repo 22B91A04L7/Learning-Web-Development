@@ -14,6 +14,7 @@ app.use(express.json()) // for json data parsing
 
 app.use(methodOverride('_method')) // to use post and get requests as other HTTP request
 
+//dummy data for notes
 let notes = [
     {
         id: uuid(),
