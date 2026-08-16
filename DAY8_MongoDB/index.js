@@ -1,6 +1,7 @@
 //db --> collections --> documents
 
 const mongoose = require('mongoose');
+
 const MONGO_URI = "mongodb://localhost:27017/Marvel"
 
 mongoose.connect(MONGO_URI)
