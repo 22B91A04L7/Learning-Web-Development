@@ -15,16 +15,29 @@ mongoose.connect(MONGO_URI)
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     price: {
-        type: Number
+        type: Number,
+        max: [10, "Size is large"]
+    },
+    onSale: {
+        type: Boolean,
+        default: true
+    },
+    categories: {
+        type: [String],
+        default: "Cycling"
+    },
+    size: {
+        type: String,
+        enum: ['S', 'M', 'L']
     }
 })
 
 const Product = new mongoose.model('Product', productSchema);
 const bike = new Product({
-    name: "Splendor",
+    name: "Lorry", price: 5.65, onSale: false, size: 'L'
 })
 bike.save()
     .then((data) => {
