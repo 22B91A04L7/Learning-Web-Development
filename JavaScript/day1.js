@@ -4,7 +4,7 @@ function rollDice() {
     console.log(roll);
 }
 
-function callTwice(funct){
+function callTwice(funct) {
     funct();
     funct();
 }
@@ -16,9 +16,9 @@ callTwice(rollDice);
 
 
 
-function callTenTimes(f){
+function callTenTimes(f) {
     console.log("Rolling the dice ten times:");
-    for(let i=1; i<=10; i++){
+    for (let i = 1; i <= 10; i++) {
         f();
     }
 }
