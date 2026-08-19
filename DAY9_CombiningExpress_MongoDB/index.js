@@ -67,12 +67,21 @@ app.get("/products/:id", async (req, res) => {
 
 // showing products
 app.get("/products", async (req, res) => {
-    const products = await Product.find({})
-    res.render("products/index", { products })
+    let { category } = req.query
+
+    if (category) {
+        const products = await Product.find({ category: category })
+        res.render("products/index", { products, category })
+    }
+    else {
+        const products = await Product.find({})
+        category = "All"
+        res.render("products/index", { products, category })
+    }
 })
 
 app.get('/', (req, res) => {
-    res.send("HOME PAGE")
+    res.redirect("/products")
 })
 
 app.listen(3000, () => {

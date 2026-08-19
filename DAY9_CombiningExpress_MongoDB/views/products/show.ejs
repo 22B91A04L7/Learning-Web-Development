@@ -16,7 +16,9 @@
             Price : <%= product.price %>
         </li>
         <li>
-            category : <%= product.category %>
+            category : <a href="/products?category=<%= product.category %>">
+                <%= product.category %>
+            </a>
         </li>
     </ul>
     <a href="/products">Back to All Products</a>
