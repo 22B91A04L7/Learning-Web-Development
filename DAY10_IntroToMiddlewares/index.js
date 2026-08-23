@@ -1,28 +1,69 @@
+
 const express = require('express');
 const app = express();
-const morgan = require("morgan")
+const morgan = require('morgan');
+
 
 app.use(morgan('tiny'));
-app.use((req, res, next) => {
-    console.log("THIS IS FIRST MIDDLEWARE!");
-    return next();
-    console.log("FINAL");
 
-})
 app.use((req, res, next) => {
-    console.log("THIS IS SECOND MIDDLEWARE!");
+    req.requestTime = Date.now();
+    console.log(req.method, req.path);
     next();
-    console.log("FINAL 222");
 })
 
-app.get("/", (req, res) => {
-    res.send("HOME PAGE !!")
+app.use('/dogs', (req, res, next) => {
+    console.log("I LOVE DOGS!!")
+    next();
 })
 
-app.get("/dogs", (req, res) => {
-    res.send("BOW BOW!")
+const verifyPassword = (req, res, next) => {
+    const { password } = req.query;
+    if (password === 'chicken') {
+        next();
+    }
+    throw new Error("Password required!!")
+}
+
+
+// app.use((req, res, next) => {
+//     console.log("THIS IS MY FIRST MIDDLEWARE!!!")
+//     return next();
+//     console.log("THIS IS MY FIRST MIDDLEWARE - AFTER CALLING NEXT()")
+// })
+// app.use((req, res, next) => {
+//     console.log("THIS IS MY SECOND MIDDLEWARE!!!")
+//     return next();
+// })
+// app.use((req, res, next) => {
+//     console.log("THIS IS MY THIRD MIDDLEWARE!!!")
+//     return next();
+// })
+
+
+app.get('/', (req, res) => {
+    console.log(`REQUEST DATE: ${req.requestTime}`)
+    res.send('HOME PAGE!')
+})
+
+app.get('/dogs', (req, res) => {
+    console.log(`REQUEST DATE: ${req.requestTime}`)
+    res.send('WOOF WOOF!')
+})
+
+app.get('/secret', verifyPassword, (req, res) => {
+    res.send('MY SECRET IS: Sometimes I wear headphones in public so I dont have to talk to anyone')
+})
+
+// app.use((req, res) => {
+//     res.status(404).send('NOT FOUND!')
+// })
+
+app.use((err, req, res, next) => {
+    console.log("*********ERROR**********");
+    next(err);
 })
 
 app.listen(3000, () => {
-    console.log("Server running on PORT 3000");
+    console.log('App is running on localhost:3000')
 })
